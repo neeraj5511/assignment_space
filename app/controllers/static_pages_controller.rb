@@ -1,7 +1,7 @@
 class StaticPagesController < ApplicationController
   def home
     if current_user.present?
-        @blogpost = current_user.blogposts.build if require_log_in?
+        @blogpost = current_user.blog_posts.build
         @feed_items = current_user.feed.paginate(page: params[:page])
     end
   end

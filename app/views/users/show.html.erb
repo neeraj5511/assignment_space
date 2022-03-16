@@ -3,7 +3,6 @@
   <aside class="col-md-4">
     <section>
       <h1>
-        <%= gravatar_for @user %>
         <%= @user.name %>
       </h1>
     </section>
@@ -12,15 +11,14 @@
     </section>
   </aside>
   <div class="col-md-8">
-    <% if @user.blogposts.any? %>
-      <h3>Blogposts (<%= @user.blogposts.count %>)</h3>
+    <% if @user.blog_posts.any? %>
+      <h3>Blogposts (<%= @user.blog_posts.count %>)</h3>
       <ol class="microposts">
         <%= render @blogposts %>
       </ol>
-      <%= will_paginate @blogposts %>
     <% end %>
   </div>
   <div class="col-md-8">
-    <%= render 'follow_form' if logged_in? %>
+    <%= render 'follow_form' if current_user %>
   </div>
 </div>
