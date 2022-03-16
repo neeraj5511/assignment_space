@@ -12,6 +12,15 @@
     </section>
   </aside>
   <div class="col-md-8">
+    <% if @user.blogposts.any? %>
+      <h3>Blogposts (<%= @user.blogposts.count %>)</h3>
+      <ol class="microposts">
+        <%= render @blogposts %>
+      </ol>
+      <%= will_paginate @blogposts %>
+    <% end %>
+  </div>
+  <div class="col-md-8">
     <%= render 'follow_form' if logged_in? %>
   </div>
 </div>

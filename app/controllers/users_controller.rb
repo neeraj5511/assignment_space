@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :require_login, only: [:new, :create]
   def show
     @user = User.find(params[:id])
+    @blogposts = @user.blogposts.paginate(page: params[:page])
   end
 
   def index
@@ -39,7 +40,7 @@ class UsersController < ApplicationController
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow'
   end
-  
+
   private 
   def user_params
     params.require(:user).permit(:name, :email, :password,
