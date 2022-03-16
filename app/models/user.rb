@@ -19,4 +19,8 @@ class User < ApplicationRecord
   def following?(other_user)
     following.include?(other_user)
   end
+
+  def feed
+    Blogpost.where("user_id = ?", id)
+  end
 end

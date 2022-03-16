@@ -1,3 +1,12 @@
-<ol class="microposts">
-  <%= render @blogposts %>
-</ol>
+<li id="<%= blogpost.id %>">
+  <%= link_to gravatar_for(blogpost.user, size: 50), blogpost.user %>
+  <span class="user"><%= link_to blogpost.user.name, blogpost.user %></span>
+  <span class="content"><%= blogpost.content %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(blogpost.created_at) %> ago.
+    <% if current_user?(blogpost.user) %>
+      <%= link_to "delete", blogpost, method: :delete,
+                                       data: { confirm: "You sure?" } %>
+    <% end %>
+  </span>
+</li>
